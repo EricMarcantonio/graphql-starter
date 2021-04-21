@@ -1,0 +1,1 @@
+export { GetPostsById } from "./UserData";
