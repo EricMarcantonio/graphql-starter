@@ -1,33 +1,41 @@
-import { ApolloServer, gql } from "apollo-server";
-import { HandleGetPost } from "./Routes";
+import { ApolloServer } from "apollo-server";
+import { Mongoose } from "mongoose";
 
-const resolvers = {
-  Query: {
-    posts: HandleGetPost,
-  },
-};
+import { AccountModelMongo } from "./Schema";
 
-const typeDefs = gql`
-  type Post {
-    userId: Int
-    id: Int
-    title: String
-    body: String
-  }
+const mongoose = new Mongoose();
 
-  type Query {
-    posts(id: Int): [Post]
-  }
-`;
-
-const server = new ApolloServer({ typeDefs, resolvers });
-
-// The `listen` method launches a web server.
-server
-  .listen(4000)
-  .then((info) => {
-    console.log(info.address + info.port);
+mongoose
+  .connect("mongodb://localhost:27017/sample_analytics", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
   })
-  .catch((err) => {
-    console.error(err);
-  });
+  .then((e) => {
+    AccountModelMongo.find({}).then((docs) => {
+      console.log(docs);
+    });
+  }).catch((err) => {
+    console.log(err)
+  })
+
+// const resolvers = {
+//   Query: {
+//     posts: () => null,
+//   },
+// };
+
+// const typeDefs = null;
+
+// const server = new ApolloServer({ typeDefs, resolvers });
+
+// // The `listen` method launches a web server.
+// server
+//   .listen(4000)
+//   .then((info) => {
+//     console.log(info.address + info.port);
+
+//   })
+//   .catch((err) => {
+//     console.error(err);
+//   });

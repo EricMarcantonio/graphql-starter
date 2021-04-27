@@ -1,1 +1,0 @@
-export { HandleGetPost } from "./PostRoute";

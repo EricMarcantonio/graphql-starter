@@ -1,1 +1,0 @@
-export { PostInterface } from "./UserData";
