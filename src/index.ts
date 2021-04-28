@@ -1,7 +1,8 @@
-import {ApolloServer, gql} from "apollo-server";
+import {ApolloServer} from "apollo-server";
 import mongoose from "mongoose";
 
-import {AccountModelMongo, IAccount, typeDefs} from "./Schema";
+import {typeDefs} from "./Schema";
+import {HandleGetAccounts} from './Routes'
 
 
 mongoose
@@ -11,24 +12,6 @@ mongoose
         useFindAndModify: false
     })
 
-
-
-
-const HandleGetAccounts = async (parent: any, args: IAccount, context: any, info: any) => {
-    if (args.account_id) {
-        return AccountModelMongo.find({account_id: args.account_id}).then((doc) => {
-            return doc
-        })
-    } else if (args.products) {
-        return AccountModelMongo.find({products: {$all: [args.products]}}).then((doc) => {
-            return doc
-        })
-    } else {
-        return AccountModelMongo.find({}).then((docs) => {
-            return docs
-        })
-    }
-}
 const resolvers = {
     Query: {
         account: HandleGetAccounts,
