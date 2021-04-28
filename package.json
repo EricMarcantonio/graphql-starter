@@ -17,6 +17,7 @@
     "apollo-server": "^2.23.0",
     "axios": "^0.21.1",
     "graphql": "^15.5.0",
+    "lodash": "^4.17.21",
     "mongoose": "^5.12.5"
   },
   "devDependencies": {
