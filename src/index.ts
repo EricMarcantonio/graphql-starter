@@ -2,7 +2,7 @@ import {ApolloServer} from "apollo-server";
 import mongoose from "mongoose";
 
 import {typeDefs} from "./Schema";
-import {HandleGetAccounts} from './Routes'
+import {HandleGetAccounts, HandleGetTransactions, HandleGetCustomer} from './Routes'
 
 
 mongoose
@@ -15,6 +15,8 @@ mongoose
 const resolvers = {
     Query: {
         account: HandleGetAccounts,
+        transaction: HandleGetTransactions,
+        customer: HandleGetCustomer
     },
 };
 const server = new ApolloServer({typeDefs, resolvers});
