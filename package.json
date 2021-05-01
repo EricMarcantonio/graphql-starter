@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon --watch src/**/*.ts --exec ts-node src/index.ts",
     "build": "tsc",
-    "prod": "npm run build && node lib/index.js"
+    "prod": "npm run build && node lib/index.js",
+    "docker:build": "docker build . -t graphql-node"
   },
   "keywords": [],
   "author": "",

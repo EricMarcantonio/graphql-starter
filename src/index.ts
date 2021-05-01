@@ -6,7 +6,7 @@ import {HandleGetAccounts, HandleGetTransactions, HandleGetCustomer} from './Rou
 
 
 mongoose
-    .connect("mongodb://localhost:27017/sample_analytics", {
+    .connect(`mongodb://${process.env.address || "127.0.0.1"}:27017/sample_analytics`, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: false
